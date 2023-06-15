@@ -1,6 +1,6 @@
 <template>
   <div class="bg-grey-6">
-    <Resume name="Garnet Crookes"/>
+    <Resume name="Garnet Crookes, M.ENG."/>
   </div>
 </template>
 
