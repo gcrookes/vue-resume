@@ -1,93 +1,34 @@
 <template>
   <div class="my-div bg-grey-1 q-pa-md">
-      <div class="row justify-center text-h4 text-primary">
-        {{ name }}
+      <div class="row justify-between q-mx-sm text-h4 text-primary">
+        <div class="text-bold">{{ name }}</div>
+        <div v-if="designation" class="q-ml-lg text-h6 flex items-end text-secondary">
+          Full Stack Software Developer, 
+          {{ designation }}
+        </div>
       </div>
-      <q-separator horizontal color="primary" />
-      <div class="row justify-center q-gutter-sm q-mt-xs">
-        <ContactCard link="https://www.google.com/maps?q=Calgary" title="Address" text=""/>
-        <a href="https://www.google.com/maps?q=Calgary" target="_blank" class="no-decoration">
-          <q-card class="row q-pr-sm">
-            <div class="rounded-div">
-              <div class="bg-accent q-ma-sm rounded-div">
-                <q-icon name="pin_drop" size="2.5rem" color="black"/>
-              </div>
-            </div>
-            <div class="q-my-auto">
-              <div class="text-body text-weight-bold">
-                Address
-              </div>
-              <div class="text-body2">
-                Calgary AB, T3B 0Z8
-              </div>
-            </div>
-          </q-card>
-        </a>
-        <a href="mailto:crookes.garnet@gmail.com" class="no-decoration">
-          <q-card class="row q-pr-sm">
-            <div class="rounded-div">
-              <div class="bg-accent q-ma-sm rounded-div">
-                <q-icon name="alternate_email" size="2.5rem" color="black"/>
-              </div>
-            </div>
-            <div class="q-my-auto">
-              <div class="text-body text-weight-bold">
-                Email
-              </div>
-              <div class="text-body">
-                crookes.garnet@gmail.com
-              </div>
-            </div>
-          </q-card>
-        </a>
-        <a href="tel:+15872190406" class="no-decoration">
-          <q-card class="row q-pr-sm">
-            <div class="rounded-div">
-              <div class="bg-accent q-ma-sm rounded-div">
-                <q-icon name="phone_in_talk" size="2.5rem" color="black"/>
-              </div>
-            </div>
-            <div class="q-my-auto">
-              <div class="text-body text-weight-bold">
-                Phone
-              </div>
-              <div class="text-body">
-                (587) 219-0406
-              </div>
-            </div>
-          </q-card>
-        </a>
-        <a href="https://github.com/gcrookes" target="_blank" class="no-decoration">
-          <q-card class="row q-pr-sm">
-            <div class="rounded-div">
-              <div class="bg-accent q-ma-sm rounded-div">
-                <img :src="githubIcon" alt="Github Link" class="centered-image" style="width: 2.5rem"/>
-              </div>
-            </div>
-            <div class="q-my-auto">
-              <div class="text-body text-weight-bold">
-                GitHub
-              </div>
-              <div class="text-body">
-                @gcrookes
-              </div>
-            </div>
-          </q-card>
-        </a>
+      <q-separator horizontal color="primary" style="height: 3px" />
+      <div class="row justify-center q-gutter-xs q-mt-xs">
+        <ContactCard link="https://www.google.com/maps/place/Montgomery,+Calgary,+AB/@51.0643662,-114.1828838,12.93z/data=!4m6!3m5!1s0x53716ef989772efd:0xd9c32fe94b8d9f74!8m2!3d51.074714!4d-114.1641658!16zL20vMGg0dGM1?entry=ttu" title="Address" text="Calgary AB, T3B 0Z8" icon="pin_drop"/>
+        <ContactCard link="mailto:crookes.garnet@gmail.com" title="Email" text="crookes.garnet@gmail.com" icon="alternate_email"/>
+        <ContactCard link="tel:+15872190406" title="Phone" text="(587) 219-0406" icon="phone_in_talk"/>
+        <ContactCard link="https://github.com/gcrookes" title="GitHub" text="@gcrookes">
+          <img :src="githubIcon" alt="Github Link" class="centered-image" style="width: 2.5rem"/>
+        </ContactCard>
       </div>
-      <SectionCard title="Technical & Professional Skills">
+      <SectionCard title="Technical & Professional Skills" icon="construction">
         <div class="q-mt-sm">
           <q-badge v-for="skill in skills" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded><q-icon name="add" />{{ skill.name }}</q-badge>
         </div>
       </SectionCard>
-      <SectionCard title="Education">
+      <SectionCard title="Education" icon="school">
           <div class="q-mx-md q-mt-sm text-secondary">
             <div class="row justify-between">
               <div class="text-weight-bold">University of Calgary, M.Eng Software Engineering</div>
               <div>April 2023</div>
             </div>
             <div class="row justify-between" style="font-size: 12px;">
-              <div class="text-italic q-ml-lg">Cumulative GPA</div>
+              <div class="text-italic q-ml-sm">Cumulative GPA</div>
               <div>4.0 of 4.0</div>
             </div>
             <div class="row justify-between q-mt-xs">
@@ -95,12 +36,42 @@
               <div>April 2019</div>
             </div>
             <div class="row justify-between" style="font-size: 12px;">
-              <div class="text-italic q-ml-lg">Cumulative GPA</div>
+              <div class="text-italic q-ml-sm">Cumulative GPA</div>
               <div>3.7 of 4.0</div>
             </div>
           </div>
       </SectionCard>
-      <SectionCard title="Software Projects">
+      <SectionCard title="Work Experience" icon="precision_manufacturing">
+        <q-card v-for="exp in experiences" class="q-mx-md q-mt-sm">
+          <div class="q-mx-sm">
+            <div class="q-my-none row justify-between">
+              <div class="row text-bold">
+                {{ exp.name }}
+              </div>
+              <div class="text-secondary">
+                {{ exp.time }}
+              </div>
+            </div>
+            <div class="q-my-none row justify-between align-center">
+              <div class="row text-bold">
+                {{ exp.position }}
+              </div>
+              <div class="text-secondary">
+                {{ exp.location }}
+              </div>
+            </div>
+          </div>
+          <q-separator color="primary" />
+          <div v-if="exp.technology.length > 0" class="q-pt-xs text-secondary text-italic text-weight-bold">
+            Utilized: 
+            <q-badge v-for="skill in exp.technology" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded>{{ skill.name }}</q-badge>
+          </div>
+          <table class="text-secondary q-pt-xs">
+            <li v-for="line in exp.description" class="q-ml-md">{{ line }}</li>
+          </table>
+        </q-card>
+      </SectionCard>
+      <SectionCard title="Software Projects" icon="architecture">
           <q-card v-for="project in projects" class="q-mx-md q-mt-sm">
             <div class="q-my-none row text-h6 text-bold justify-between align-center">
               {{ project.name }}
@@ -116,7 +87,7 @@
               <q-badge v-for="skill in project.technology" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded>{{ skill.name }}</q-badge>
             </div>
             <table class="text-secondary">
-              <li v-for="line in project.description">{{ line }}</li>
+              <li v-for="line in project.description" class="q-ml-md">{{ line }}</li>
             </table>
           </q-card>
       </SectionCard>
@@ -131,7 +102,8 @@
 
   export default defineComponent({
     props: {
-      name: {type: String, required: true}
+      name: {type: String, required: true},
+      designation: { type: String, default: '' }
     },
     components: {
       SectionCard,
@@ -180,7 +152,6 @@
         },
         {
           name: 'EOG Mouse Control - NatHacks Hackathon',
-          // technology: ['Python', 'Tensorflow', 'Arduino', 'Serial Communication', 'EXG Pills', 'Multithreading'],
           technology: [{name: 'Python', type: 'language'}, {name: 'Tensorflow', type: 'library'}, {name: 'Arduino', type: 'hardware'}, {name: 'EXG Pills', type: 'hardware'}, {name: 'Multithreading', type: 'concept'}, {name: 'Serial Communication', type: 'concept'}],
           description: [
             'Created a Brain Computer Interface to control a computer mouse from EOG Data',
@@ -192,19 +163,17 @@
         },
         {
           name: 'Decline Analysis Application',
-          // technology: ['Python', 'PyQt5', 'MatPlotLib', 'Numpy', 'Pandas', 'Pickle'],
           technology: [{name: 'Python', type: 'language'}, {name: 'PyQt5', type: 'library'}, {name: 'MatPlotLib', type: 'library'}, {name: 'Numpy', type: 'library'}, {name: 'Pandas', type: 'library'}, {name: 'Pickle', type: 'library'}],
           description: [
             'Windows application to improve efficiency of decline analysis of oil & gas wells',
             'GUI allows user to interact with data and select points to fit a curve to',
-            // 'Implemented system to create and load save files using Pickle',
+            'Implemented system to create and load save files using Pickle',
             'Imports/Exports CSV files allowing collaboration with other programs',
           ],
           github: "https://github.com/gcrookes/DeclineAnalysis",
         },
         {
           name: 'Course Registration Website',
-          // technology: ['Java', 'Javascript', 'HTML', 'CSS', 'Spring Boot', 'MySQL', 'JPA', 'REST API'],
           technology: [{name: 'Java', type: 'language'}, {name: 'Javascript', type: 'language'}, {name: 'HTML', type: 'language'}, {name: 'CSS', type: 'language'}, {name: 'Spring Boot', type: 'framework'}, {name: 'MySQL', type: 'database'}, {name: 'JPA', type: 'library'}, {name: 'REST API', type: 'concept'}],
           description: [
             'Created a website which students could use to login, enroll in, or drop courses',
@@ -215,12 +184,47 @@
           github: "https://github.com/dpwalz/ENSF607-608"
         }
       ]
+      const experiences = [
+        {
+          name: 'Child Friendly Care',
+          position: 'Full Stack Software Developer',
+          location: 'Calgary, AB',
+          time: 'Feb. 2023 to Present',
+          technology: [
+            {name: 'TypeScript', type: 'language'},
+            {name: 'C#', type: 'language'},
+            {name: 'HTML/CSS', type: 'language'},
+            {name: 'VueJS', type: 'framework'},
+            {name: 'ASP.NET Core', type: 'framework'},
+            {name: 'Microsoft Azure', type: 'platform'},
+            {name: 'CosmosDB', type: 'database'},
+            {name: 'Serverless', type: 'concept'},
+          ],
+          description: [
+            'Developed a web application to integrate all functionality required to operate a daycare in a single site',
+            'Built frontend site as a Single Page Application in VueJS using the Quasar framework for UI components',
+            'Created RESTful API using the ASP.NET Core framework deployed on serverless Azure Functions',
+            'Utilized Microsoft Azure Cosmos NoSQL database for data storage and logging production failures'
+          ]
+        },
+        {
+          name: 'MacDon Industries LTD',
+          position: 'Design Engineer',
+          location: 'Winnipeg, MB',
+          time: 'April 2019 to April 2022',
+          technology: [],
+          description: [
+            'Designed hydraulic and mechanical parts and systems for mobile ag equipment (Combine Draper Header)'
+          ]
+        },
+      ]
       return {
         count,
         skills,
         projects,
         colors,
         githubIcon,
+        experiences,
       }
     }
   })

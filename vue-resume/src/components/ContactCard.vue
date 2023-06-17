@@ -3,7 +3,8 @@
 		<q-card class="row q-pr-sm">
 		<div class="rounded-div">
 			<div class="bg-accent q-ma-sm rounded-div">
-			<q-icon :name="icon" size="2.5rem" color="black"/>
+				<q-icon v-if="icon" :name="icon" size="2.5rem" color="black"/>
+				<slot />
 			</div>
 		</div>
 		<div class="q-my-auto">
