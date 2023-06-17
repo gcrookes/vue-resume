@@ -5,6 +5,7 @@
       </div>
       <q-separator horizontal color="primary" />
       <div class="row justify-center q-gutter-sm q-mt-xs">
+        <ContactCard link="https://www.google.com/maps?q=Calgary" title="Address" text=""/>
         <a href="https://www.google.com/maps?q=Calgary" target="_blank" class="no-decoration">
           <q-card class="row q-pr-sm">
             <div class="rounded-div">
@@ -126,13 +127,15 @@
   import { defineComponent, ref } from 'vue'
   import SectionCard from './SectionCard.vue'
   import githubIcon from '../assets/github.svg'
+  import ContactCard from './ContactCard.vue'
 
   export default defineComponent({
     props: {
       name: {type: String, required: true}
     },
     components: {
-      SectionCard
+      SectionCard,
+      ContactCard
     },
     setup() {
       const count = ref(0)
