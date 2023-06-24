@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-center text-primary q-my-sm">
+  <div class="row justify-center text-primary q-my-md">
     <q-card class="q-pa-sm full-width shadow-5">
       <div v-if="title" class="relative-position bg-grey-3 rounded-div row justify-between" style="border-radius: 3px">
         <div class="bg-primary bar absolute"></div>

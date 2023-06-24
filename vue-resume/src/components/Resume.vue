@@ -8,7 +8,7 @@
         </div>
       </div>
       <q-separator horizontal color="primary" style="height: 3px" />
-      <div class="row justify-center q-gutter-xs q-mt-xs">
+      <div class="row justify-center q-gutter-xs q-mt-md">
         <ContactCard link="https://www.google.com/maps/place/Montgomery,+Calgary,+AB/@51.0643662,-114.1828838,12.93z/data=!4m6!3m5!1s0x53716ef989772efd:0xd9c32fe94b8d9f74!8m2!3d51.074714!4d-114.1641658!16zL20vMGg0dGM1?entry=ttu" title="Address" text="Calgary AB, T3B 0Z8" icon="pin_drop"/>
         <ContactCard link="mailto:crookes.garnet@gmail.com" title="Email" text="crookes.garnet@gmail.com" icon="alternate_email"/>
         <ContactCard link="tel:+15872190406" title="Phone" text="(587) 219-0406" icon="phone_in_talk"/>
@@ -17,8 +17,8 @@
         </ContactCard>
       </div>
       <SectionCard title="Technical & Professional Skills" icon="construction">
-        <div class="q-mt-sm">
-          <q-badge v-for="skill in skills" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded><q-icon name="add" />{{ skill.name }}</q-badge>
+        <div class="q-mt-sm q-px-md text-italic justify-between row">
+          <q-badge v-for="skill in skills" class="q-ma-xs q-py-xs text-body" style="font-size: 15px" size="lg" :color="colors[skill.type] ?? 'primary'" rounded :key="skill"><q-icon name="add" />{{ skill.name }}</q-badge>
         </div>
       </SectionCard>
       <SectionCard title="Education" icon="school">
@@ -42,7 +42,7 @@
           </div>
       </SectionCard>
       <SectionCard title="Work Experience" icon="precision_manufacturing">
-        <q-card v-for="exp in experiences" class="q-mx-md q-mt-sm">
+        <q-card v-for="exp in experiences" class="q-mx-md q-mt-sm" :key="exp">
           <div class="q-mx-sm">
             <div class="q-my-none row justify-between">
               <div class="row text-bold">
@@ -64,15 +64,16 @@
           <q-separator color="primary" />
           <div v-if="exp.technology.length > 0" class="q-pt-xs text-secondary text-italic text-weight-bold">
             Utilized: 
-            <q-badge v-for="skill in exp.technology" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded>{{ skill.name }}</q-badge>
+            <q-badge v-for="skill in exp.technology" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded :key="skill">{{ skill.name }}</q-badge>
           </div>
           <table class="text-secondary q-pt-xs">
-            <li v-for="line in exp.description" class="q-ml-md">{{ line }}</li>
+            <li v-for="line in exp.description" class="q-ml-md" :key="line">{{ line }}</li>
           </table>
         </q-card>
       </SectionCard>
+        <div class="page-break" />
       <SectionCard title="Software Projects" icon="architecture">
-          <q-card v-for="project in projects" class="q-mx-md q-mt-sm">
+          <q-card v-for="project in projects" class="q-mx-md q-mt-sm" :key="project">
             <div class="q-my-none row text-h6 text-bold justify-between align-center">
               {{ project.name }}
               <div class="text-xs row">
@@ -84,10 +85,10 @@
             <q-separator color="primary" />
             <div class="q-pt-xs text-secondary text-italic text-weight-bold">
               Utilized: 
-              <q-badge v-for="skill in project.technology" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded>{{ skill.name }}</q-badge>
+              <q-badge v-for="skill in project.technology" class="q-ma-xs" :color="colors[skill.type] ?? 'primary'" rounded :key="skill">{{ skill.name }}</q-badge>
             </div>
             <table class="text-secondary">
-              <li v-for="line in project.description" class="q-ml-md">{{ line }}</li>
+              <li v-for="line in project.description" class="q-ml-md" :key="line">{{ line }}</li>
             </table>
           </q-card>
       </SectionCard>
@@ -112,13 +113,13 @@
     setup() {
       const count = ref(0)
       const colors = {
-        language: 'indigo-7',
-        hardware: 'green-10',
+        concept: 'deep-orange-7',
         database: 'blue-grey-8',
         framework: 'red-8',
-        concept: 'deep-orange-7',
-        tool: 'grey-10',
+        hardware: 'green-10',
+        language: 'indigo-7',
         platform: 'teal-7',
+        tool: 'grey-10',
       }
       const skills = [
         {name: 'TypeScript', type: 'language'},
@@ -131,13 +132,16 @@
         {name: 'ASP.NET Core', type: 'framework'},
         {name: 'React', type: 'framework'},
         {name: 'Spring Boot', type: 'framework'},
+        {name: 'Unity', type: 'framework'},
         {name: 'Microsoft Azure', type: 'platform'},
         {name: 'CosmosDB', type: 'database'},
         {name: 'MySQL', type: 'database'},
+        {name: 'PostgreSQL', type: 'database'},
         {name: `REST API's`, type: 'concept'},
         {name: 'NoSQL Databases', type: 'concept'},
         {name: 'Relational Databases', type: 'concept'},
         {name: 'Serverless', type: 'concept'},
+        {name: 'Machine Learning', type: 'concept'},
       ]
       const projects = [
         {
@@ -204,17 +208,42 @@
             'Developed a web application to integrate all functionality required to operate a daycare in a single site',
             'Built frontend site as a Single Page Application in VueJS using the Quasar framework for UI components',
             'Created RESTful API using the ASP.NET Core framework deployed on serverless Azure Functions',
-            'Utilized Microsoft Azure Cosmos NoSQL database for data storage and logging production failures'
+            'Utilized Microsoft Azure Cosmos NoSQL database for data storage and logging production failures',
+            'Used Azure Dev Ops to deploy services, manage code repositories, and track issues',
+          ]
+        },
+        {
+          name: 'Capstone Industry Project',
+          position: 'Engineering Student',
+          location: 'Calgary, AB',
+          time: 'Jan. 2023 to Apr. 2023',
+          technology: [
+            {name: 'Python', type: 'language'},
+            {name: 'C#', type: 'language'},
+            {name: 'ROS Network', type: 'framework'},
+            {name: 'Unity Engine', type: 'framework'},
+            {name: 'Open CV', type: 'library'},
+            {name: 'Computer Vision', type: 'concept'},
+            {name: 'Control System', type: 'concept'},
+          ],
+          description: [
+            'Developed a vision based control system to steer simulatted equipment inside of a Unity Simulation',
+            'Created a computer vision algorithm to detect the edge between standing and cut crop using OpenCV',
+            'Produced a control system that used the feedback from they computer vision to steer an implement',
+            'Simulated environment in Unity and communicated with a ROS server in a separate Linux environment',
+            'Communicated with industry sponsor to track progess and wrote a detailed technical report on solution',
           ]
         },
         {
           name: 'MacDon Industries LTD',
-          position: 'Design Engineer',
+          position: 'Mechanical Design Engineer',
           location: 'Winnipeg, MB',
           time: 'April 2019 to April 2022',
           technology: [],
           description: [
-            'Designed hydraulic and mechanical parts and systems for mobile ag equipment (Combine Draper Header)'
+            'Designed hydraulic and mechanical parts and systems for mobile ag equipment (Combine Draper Header)',
+            'Communicate with testing department to develop test plans and support field testing',
+            'Released designs to production and coordinated with manufacturing and testing to produce product',
           ]
         },
       ]
@@ -269,4 +298,8 @@
 div
   font-family: 'Arial', 'Helvetica', sans-serif
 
+@media print
+  .page-break 
+    page-break-before: always
+  
 </style>

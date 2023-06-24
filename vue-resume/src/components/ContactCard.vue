@@ -1,22 +1,18 @@
 <template>
-	<a :href="link" target="_blank" class="no-decoration">
-		<q-card class="row q-pr-sm">
-		<div class="rounded-div">
-			<div class="bg-accent q-ma-sm rounded-div">
-				<q-icon v-if="icon" :name="icon" size="2.5rem" color="black"/>
-				<slot />
-			</div>
-		</div>
-		<div class="q-my-auto">
-			<div class="text-body text-weight-bold">
-			{{ title }}
-			</div>
-			<div class="text-body2">
-			{{ text }}
-			</div>
-		</div>
-		</q-card>
-	</a>
+    <a :href="link" target="_blank" class="no-decoration">
+        <q-card class="row q-pr-sm">
+            <div class="rounded-div">
+                <div class="bg-accent q-ma-sm rounded-div">
+                    <q-icon v-if="icon" :name="icon" size="2.5rem" color="black"/>
+                    <slot />
+                </div>
+            </div>
+            <div class="text-body text-weight-bold">
+                <div class="q-my-auto">{{ title }}</div>
+                <div class="text-body2">{{ text }}</div>
+            </div>
+        </q-card>
+    </a>
 </template>
 
 <script lang="ts">
